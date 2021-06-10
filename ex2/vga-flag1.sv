@@ -8,7 +8,6 @@ module vga(
   reg [9:0] CounterX, CounterY;
   reg inDisplayArea;
   reg vga_HS, vga_VS;
-  reg state;
 
   wire CounterXmaxed = (CounterX == 800); // 16 + 48 + 96 + 640
   wire CounterYmaxed = (CounterY == 525); // 10 +  2 + 33 + 480
@@ -23,6 +22,7 @@ module vga(
       else
         CounterX <= CounterX + 1;
 
+  reg state;
   always @(posedge clk or posedge reset)
     if (reset) begin
       CounterY <= 0;

@@ -12,7 +12,6 @@ module vga(
   wire CounterXmaxed = (CounterX == 800); // 16 + 48 + 96 + 640
   wire CounterYmaxed = (CounterY == 525); // 10 +  2 + 33 + 480
   wire [3:0] row, col;
-  wire [10:0] temp; // Auxiliary variable
 
   always @(posedge clk or posedge reset)
     if (reset)
@@ -46,6 +45,8 @@ module vga(
 
   assign VGA_HS_O = ~vga_HS;
   assign VGA_VS_O = ~vga_VS;
+
+  wire [10:0] temp; // Auxiliary variable
 
   // White pixel when CounterX == CouterY, Black pixel otherwise
   //assign VGA_R = inDisplayArea && (CounterX == CounterY) ? 4'b1111 : 4'b0000;

@@ -8,7 +8,6 @@ module vga(
   reg [9:0] CounterX, CounterY;
   reg inDisplayArea;
   reg vga_HS, vga_VS;
-  reg state;
 
   wire CounterXmaxed = (CounterX == 800); // 16 + 48 + 96 + 640
   wire CounterYmaxed = (CounterY == 525); // 10 +  2 + 33 + 480
@@ -47,6 +46,7 @@ module vga(
   assign VGA_HS_O = ~vga_HS;
   assign VGA_VS_O = ~vga_VS;  
 
+ reg state;
   always
   begin
     state <= 1; #1000000000; state <= 0; #1000000000;
